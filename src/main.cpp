@@ -63,48 +63,48 @@ int main()
     };
     float vertexData[] =
     {
-        // Position           // Normal
-        -0.5f, -0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  // 0
-         0.5f, -0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  // 1
-        -0.5f,  0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  // 2
-        -0.5f,  0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  // 2
-         0.5f, -0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  // 1
-         0.5f,  0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  // 3
+        // Position           // Normal             // UV
+        -0.5f, -0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  0.0f, 0.0f,  // 0
+         0.5f, -0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  1.0f, 0.0f,  // 1
+        -0.5f,  0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  0.0f, 1.0f,  // 2
+        -0.5f,  0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  0.0f, 1.0f,  // 2
+         0.5f, -0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  1.0f, 0.0f,  // 1
+         0.5f,  0.5f,  0.5f,   0.0f,  0.0f,  1.0f,  1.0f, 1.0f,  // 3
 
-         0.5f, -0.5f,  0.5f,   1.0f,  0.0f,  0.0f,  // 1
-         0.5f, -0.5f, -0.5f,   1.0f,  0.0f,  0.0f,  // 5
-         0.5f,  0.5f,  0.5f,   1.0f,  0.0f,  0.0f,  // 3
-         0.5f,  0.5f,  0.5f,   1.0f,  0.0f,  0.0f,  // 3
-         0.5f, -0.5f, -0.5f,   1.0f,  0.0f,  0.0f,  // 5
-         0.5f,  0.5f, -0.5f,   1.0f,  0.0f,  0.0f,  // 7
+         0.5f, -0.5f,  0.5f,   1.0f,  0.0f,  0.0f,  0.0f, 0.0f,  // 1
+         0.5f, -0.5f, -0.5f,   1.0f,  0.0f,  0.0f,  1.0f, 0.0f,  // 5
+         0.5f,  0.5f,  0.5f,   1.0f,  0.0f,  0.0f,  0.0f, 1.0f,  // 3
+         0.5f,  0.5f,  0.5f,   1.0f,  0.0f,  0.0f,  0.0f, 1.0f,  // 3
+         0.5f, -0.5f, -0.5f,   1.0f,  0.0f,  0.0f,  1.0f, 0.0f,  // 5
+         0.5f,  0.5f, -0.5f,   1.0f,  0.0f,  0.0f,  1.0f, 1.0f,  // 7
 
-        -0.5f,  0.5f,  0.5f,   0.0f,  1.0f,  0.0f,  // 2
-         0.5f,  0.5f,  0.5f,   0.0f,  1.0f,  0.0f,  // 3
-        -0.5f,  0.5f, -0.5f,   0.0f,  1.0f,  0.0f,  // 6
-        -0.5f,  0.5f, -0.5f,   0.0f,  1.0f,  0.0f,  // 6
-         0.5f,  0.5f,  0.5f,   0.0f,  1.0f,  0.0f,  // 3
-         0.5f,  0.5f, -0.5f,   0.0f,  1.0f,  0.0f,  // 7
+        -0.5f,  0.5f,  0.5f,   0.0f,  1.0f,  0.0f,  0.0f, 0.0f,  // 2
+         0.5f,  0.5f,  0.5f,   0.0f,  1.0f,  0.0f,  1.0f, 0.0f,  // 3
+        -0.5f,  0.5f, -0.5f,   0.0f,  1.0f,  0.0f,  0.0f, 1.0f,  // 6
+        -0.5f,  0.5f, -0.5f,   0.0f,  1.0f,  0.0f,  0.0f, 1.0f,  // 6
+         0.5f,  0.5f,  0.5f,   0.0f,  1.0f,  0.0f,  1.0f, 0.0f,  // 3
+         0.5f,  0.5f, -0.5f,   0.0f,  1.0f,  0.0f,  1.0f, 1.0f,  // 7
 
-         0.5f, -0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  // 5
-        -0.5f, -0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  // 4
-         0.5f,  0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  // 7
-         0.5f,  0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  // 7
-        -0.5f, -0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  // 4
-        -0.5f,  0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  // 6
+         0.5f, -0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  0.0f, 0.0f,  // 5
+        -0.5f, -0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  1.0f, 0.0f,  // 4
+         0.5f,  0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  0.0f, 1.0f,  // 7
+         0.5f,  0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  0.0f, 1.0f,  // 7
+        -0.5f, -0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  1.0f, 0.0f,  // 4
+        -0.5f,  0.5f, -0.5f,   0.0f,  0.0f, -1.0f,  1.0f, 1.0f,  // 6
 
-        -0.5f, -0.5f, -0.5f,  -1.0f,  0.0f,  0.0f,  // 4
-        -0.5f, -0.5f,  0.5f,  -1.0f,  0.0f,  0.0f,  // 0
-        -0.5f,  0.5f, -0.5f,  -1.0f,  0.0f,  0.0f,  // 6
-        -0.5f,  0.5f, -0.5f,  -1.0f,  0.0f,  0.0f,  // 6
-        -0.5f, -0.5f,  0.5f,  -1.0f,  0.0f,  0.0f,  // 0
-        -0.5f,  0.5f,  0.5f,  -1.0f,  0.0f,  0.0f,  // 2
+        -0.5f, -0.5f, -0.5f,  -1.0f,  0.0f,  0.0f,  0.0f, 0.0f,  // 4
+        -0.5f, -0.5f,  0.5f,  -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,  // 0
+        -0.5f,  0.5f, -0.5f,  -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,  // 6
+        -0.5f,  0.5f, -0.5f,  -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,  // 6
+        -0.5f, -0.5f,  0.5f,  -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,  // 0
+        -0.5f,  0.5f,  0.5f,  -1.0f,  0.0f,  0.0f,  1.0f, 1.0f,  // 2
 
-        -0.5f, -0.5f, -0.5f,   0.0f, -1.0f,  0.0f,  // 4
-         0.5f, -0.5f, -0.5f,   0.0f, -1.0f,  0.0f,  // 5
-        -0.5f, -0.5f,  0.5f,   0.0f, -1.0f,  0.0f,  // 0
-        -0.5f, -0.5f,  0.5f,   0.0f, -1.0f,  0.0f,  // 0
-         0.5f, -0.5f, -0.5f,   0.0f, -1.0f,  0.0f,  // 5
-         0.5f, -0.5f,  0.5f,   0.0f, -1.0f,  0.0f   // 1
+        -0.5f, -0.5f, -0.5f,   0.0f, -1.0f,  0.0f,  0.0f, 0.0f,  // 4
+         0.5f, -0.5f, -0.5f,   0.0f, -1.0f,  0.0f,  1.0f, 0.0f,  // 5
+        -0.5f, -0.5f,  0.5f,   0.0f, -1.0f,  0.0f,  0.0f, 1.0f,  // 0
+        -0.5f, -0.5f,  0.5f,   0.0f, -1.0f,  0.0f,  0.0f, 1.0f,  // 0
+         0.5f, -0.5f, -0.5f,   0.0f, -1.0f,  0.0f,  1.0f, 0.0f,  // 5
+         0.5f, -0.5f,  0.5f,   0.0f, -1.0f,  0.0f,  1.0f, 1.0f   // 1
     };
     /* glm::vec3 cubePositions[] =
     {
@@ -133,10 +133,12 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, false, 6 * sizeof(GLfloat), (GLvoid*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, false, 8 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, false, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, false, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
     glEnableVertexAttribArray(1);
+    // glVertexAttribPointer(2, 2, GL_FLOAT, false, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+    // glEnableVertexAttribArray(2);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
@@ -153,13 +155,14 @@ int main()
 
     glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, false, 6 * sizeof(GLfloat), (GLvoid*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, false, 8 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
     // Texture2 texture("container.jpg", GL_RGB, "awesomeface.png", GL_RGBA);
+    // Texture texture("container.jpg", GL_RGB);
 
     lightingShader.use();
 
@@ -171,10 +174,18 @@ int main()
     lightingShader.setMat4("view", view);
     lightingShader.setMat4("projection", projection);
 
-    lightingShader.setVec3("viewPos", camera.position);
-    lightingShader.setVec3("lightPos", lightPos);
-    lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
-    lightingShader.setVec3("lightColor",  1.0f, 1.0f, 1.0f);
+    lightingShader.setVec3("viewPosition", camera.position);
+
+    lightingShader.setVec3("material.ambient", 0.0215f, 0.1745f, 0.0215f);
+    lightingShader.setVec3("material.diffuse", 0.07568f, 0.61424f, 0.07568f);
+    lightingShader.setVec3("material.specular", 0.633f, 0.727811f, 0.633f);
+    lightingShader.setFloat("material.shininess", 0.6f * 128.0f);
+
+    lightingShader.setVec3("light.ambient", 1.0f, 1.0f, 1.0f);
+    lightingShader.setVec3("light.diffuse", 1.0f, 1.0f, 1.0f);
+    lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+
+    // lightingShader.setInt("texture1", 0);
 
     // glPolygonMode(GL_FRONT, GL_LINE);
     while(display.active())
@@ -200,8 +211,10 @@ int main()
         lightingShader.setMat4("view", view);
         lightingShader.setMat4("projection", projection);
 
-        lightingShader.setVec3("viewPos", camera.position);
-        lightingShader.setVec3("lightPos", lightPos);
+        lightingShader.setVec3("viewPosition", camera.position);
+        lightingShader.setVec3("light.position", lightPos);
+
+        // texture.bind();
 
         glBindVertexArray(cubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
