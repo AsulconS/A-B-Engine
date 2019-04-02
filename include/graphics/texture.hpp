@@ -9,7 +9,7 @@
 class Texture
 {
     public:
-        Texture(const std::string& name, GLenum format);
+        Texture(const std::string& name, GLenum format, int texUnit);
         virtual ~Texture();
 
         void bind();
@@ -17,6 +17,7 @@ class Texture
     private:
         // Texture by itself
         GLuint texture;
+        int textureUnit;
 
         // RAW Data
         int width;
@@ -28,7 +29,7 @@ class Texture
 class Texture2
 {
     public:
-        Texture2(const std::string& name1, GLenum format1, const std::string& name2, GLenum format2);
+        Texture2(const std::string& name1, GLenum format1, int texUnit1, const std::string& name2, GLenum format2, int texUnit2);
         virtual ~Texture2();
 
         void bind();
@@ -36,6 +37,7 @@ class Texture2
     private:
         // Texture by itself
         GLuint texture[2];
+        int textureUnit[2];
 
         // RAW Data
         int width[2];

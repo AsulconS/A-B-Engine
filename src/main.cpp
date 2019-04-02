@@ -16,51 +16,6 @@ int main()
     Shader lightingShader("light");
     Shader lampShader("lamp");
 
-    float vertices[] =
-    {
-        // Position           // UV
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,  // 0
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,  // 1
-        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,  // 2
-        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,  // 2
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,  // 1
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,  // 3
-
-         0.5f, -0.5f,  0.5f,  0.0f, 0.0f,  // 1
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,  // 5
-         0.5f,  0.5f,  0.5f,  0.0f, 1.0f,  // 3
-         0.5f,  0.5f,  0.5f,  0.0f, 1.0f,  // 3
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,  // 5
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,  // 7
-
-        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,  // 2
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,  // 3
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,  // 6
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,  // 6
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,  // 3
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,  // 7
-
-         0.5f, -0.5f, -0.5f,  0.0f, 0.0f,  // 5
-        -0.5f, -0.5f, -0.5f,  1.0f, 0.0f,  // 4
-         0.5f,  0.5f, -0.5f,  0.0f, 1.0f,  // 7
-         0.5f,  0.5f, -0.5f,  0.0f, 1.0f,  // 7
-        -0.5f, -0.5f, -0.5f,  1.0f, 0.0f,  // 4
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,  // 6
-
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,  // 4
-        -0.5f, -0.5f,  0.5f,  1.0f, 0.0f,  // 0
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,  // 6
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,  // 6
-        -0.5f, -0.5f,  0.5f,  1.0f, 0.0f,  // 0
-        -0.5f,  0.5f,  0.5f,  1.0f, 1.0f,  // 2
-
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,  // 4
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,  // 5
-        -0.5f, -0.5f,  0.5f,  0.0f, 1.0f,  // 0
-        -0.5f, -0.5f,  0.5f,  0.0f, 1.0f,  // 0
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,  // 5
-         0.5f, -0.5f,  0.5f,  1.0f, 1.0f,  // 1
-    };
     float vertexData[] =
     {
         // Position           // Normal             // UV
@@ -128,19 +83,16 @@ int main()
     glGenVertexArrays(1, &cubeVAO);
     glGenBuffers(1, &cubeVBO);
 
-    glBindVertexArray(cubeVAO);
-
     glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
+    glBindVertexArray(cubeVAO);
     glVertexAttribPointer(0, 3, GL_FLOAT, false, 8 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 3, GL_FLOAT, false, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(2, 2, GL_FLOAT, false, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
     glEnableVertexAttribArray(2);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
     // LIGHT
@@ -150,7 +102,6 @@ int main()
     GLuint lightVAO;
 
     glGenVertexArrays(1, &lightVAO);
-
     glBindVertexArray(lightVAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
@@ -158,10 +109,10 @@ int main()
     glVertexAttribPointer(0, 3, GL_FLOAT, false, 8 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
-    Texture texture("container2.png", GL_RGBA);
+    Texture texture("container2.png", GL_RGBA, 0);
+    Texture textureSpec("container2_specular.png", GL_RGBA, 1);
 
     lightingShader.use();
 
@@ -176,7 +127,7 @@ int main()
     lightingShader.setVec3("viewPosition", camera.position);
 
     lightingShader.setInt("material.diffuse", 0);
-    lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+    lightingShader.setInt("material.specular", 1);
     lightingShader.setFloat("material.shininess", 64.0f);
 
     lightingShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
@@ -211,6 +162,7 @@ int main()
         lightingShader.setVec3("light.position", lightPos);
 
         texture.bind();
+        textureSpec.bind();
 
         glBindVertexArray(cubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);

@@ -69,6 +69,10 @@ void Display::processInput()
         currentCamera->move(CameraMovement::LEFT, deltaTime);
     if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         currentCamera->move(CameraMovement::RIGHT, deltaTime);
+    if(glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+        currentCamera->move(CameraMovement::UP, deltaTime);
+    if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+        currentCamera->move(CameraMovement::DOWN, deltaTime);
 }
 
 void Display::swapBuffers()
