@@ -137,8 +137,8 @@ int main()
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 3, GL_FLOAT, false, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
     glEnableVertexAttribArray(1);
-    // glVertexAttribPointer(2, 2, GL_FLOAT, false, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
-    // glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, false, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(2);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
@@ -161,8 +161,7 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
-    // Texture2 texture("container.jpg", GL_RGB, "awesomeface.png", GL_RGBA);
-    // Texture texture("container.jpg", GL_RGB);
+    Texture texture("container2.png", GL_RGBA);
 
     lightingShader.use();
 
@@ -176,16 +175,13 @@ int main()
 
     lightingShader.setVec3("viewPosition", camera.position);
 
-    lightingShader.setVec3("material.ambient", 0.0215f, 0.1745f, 0.0215f);
-    lightingShader.setVec3("material.diffuse", 0.07568f, 0.61424f, 0.07568f);
-    lightingShader.setVec3("material.specular", 0.633f, 0.727811f, 0.633f);
-    lightingShader.setFloat("material.shininess", 0.6f * 128.0f);
+    lightingShader.setInt("material.diffuse", 0);
+    lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+    lightingShader.setFloat("material.shininess", 64.0f);
 
-    lightingShader.setVec3("light.ambient", 1.0f, 1.0f, 1.0f);
-    lightingShader.setVec3("light.diffuse", 1.0f, 1.0f, 1.0f);
+    lightingShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
+    lightingShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
     lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
-
-    // lightingShader.setInt("texture1", 0);
 
     // glPolygonMode(GL_FRONT, GL_LINE);
     while(display.active())
@@ -194,7 +190,7 @@ int main()
         display.processInput();
 
         // glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // Moving Process
@@ -214,7 +210,7 @@ int main()
         lightingShader.setVec3("viewPosition", camera.position);
         lightingShader.setVec3("light.position", lightPos);
 
-        // texture.bind();
+        texture.bind();
 
         glBindVertexArray(cubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
