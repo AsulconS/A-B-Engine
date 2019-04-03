@@ -5,15 +5,18 @@
 #include "graphics.hpp"
 
 // Settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 1408; // 800 (LEGACY)
+const unsigned int SCR_HEIGHT = 792; // 600 (LEGACY)
 const float ASPECT = (float)SCR_WIDTH / (float)SCR_HEIGHT;
 
 int main()
 {
+    Display display(SCR_WIDTH, SCR_HEIGHT, "OpenGL Test Window", 3);
     Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-    Display display(SCR_WIDTH, SCR_HEIGHT, "OpenGL Test Window", 3, &camera);
-    Shader lightingShader("light");
+
+    display.setCamera(&camera);
+
+    Shader lightingShader("directionalLight");
     Shader lampShader("lamp");
 
     float vertexData[] =
@@ -61,7 +64,7 @@ int main()
          0.5f, -0.5f, -0.5f,   0.0f, -1.0f,  0.0f,  1.0f, 0.0f,  // 5
          0.5f, -0.5f,  0.5f,   0.0f, -1.0f,  0.0f,  1.0f, 1.0f   // 1
     };
-    /* glm::vec3 cubePositions[] =
+    glm::vec3 cubePositions[] =
     {
         glm::vec3( 0.0f,  0.0f,  0.0f),
         glm::vec3( 2.0f,  5.0f, -15.0f),
@@ -73,7 +76,7 @@ int main()
         glm::vec3( 1.5f,  2.0f, -2.5f),
         glm::vec3( 1.5f,  0.2f, -1.5f),
         glm::vec3(-1.3f,  1.0f, -1.5f)
-    }; */
+    };
 
     // CUBE
     // ----
@@ -120,16 +123,19 @@ int main()
     glm::mat4 view  = glm::mat4(1.0f);
     glm::mat4 projection = glm::mat4(1.0f);
 
+    // Setting up Vertex Shader Uniforms
     lightingShader.setMat4("model", model);
     lightingShader.setMat4("view", view);
     lightingShader.setMat4("projection", projection);
 
-    lightingShader.setVec3("viewPosition", camera.position);
+    // Setting up Fragment Shader Uniforms
+    lightingShader.setVec3("viewPos", camera.position);
 
     lightingShader.setInt("material.diffuse", 0);
     lightingShader.setInt("material.specular", 1);
     lightingShader.setFloat("material.shininess", 64.0f);
 
+    lightingShader.setVec3("light.direction", -0.2f, -1.0f, -0.3f);
     lightingShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
     lightingShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
     lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
@@ -144,13 +150,9 @@ int main()
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Moving Process
-        float radius = 1.5f;
-        lightPos.x = cos(glfwGetTime() * 0.5f) * radius;
-        lightPos.y = 0.0f;
-        lightPos.z = sin(glfwGetTime() * 0.5f) * radius;
-
         // Rendering Process
+        // -----------------
+        // Camera Processing
         view = camera.getViewMatrix();
         projection = camera.getProjectionMatrix(ASPECT);
 
@@ -158,15 +160,27 @@ int main()
         lightingShader.setMat4("view", view);
         lightingShader.setMat4("projection", projection);
 
-        lightingShader.setVec3("viewPosition", camera.position);
-        lightingShader.setVec3("light.position", lightPos);
+        lightingShader.setVec3("viewPos", camera.position);
 
+        // Texture Processing
         texture.bind();
         textureSpec.bind();
 
+        // Model Processing
         glBindVertexArray(cubeVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        for(size_t i = 0; i < 10; ++i)
+        {
+            model = glm::mat4(1.0f);
+            model = glm::translate(model, cubePositions[i]);
+            float angle = 20.0f * i;
+            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+            lightingShader.setMat4("model", model);
+
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
         glBindVertexArray(0);
+
+        // ------------------
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, lightPos);

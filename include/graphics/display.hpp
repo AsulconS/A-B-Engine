@@ -13,12 +13,15 @@
 class Display
 {
     public:
-        Display(const unsigned int width, const unsigned int height, const std::string& title, const unsigned int glVersion, Camera* camera);
+        Display(const unsigned int width, const unsigned int height, const std::string& title, const unsigned int glVersion, Camera* camera = NULL);
         virtual ~Display();
 
         void processInput();
         void swapBuffers();
         void pollEvents();
+
+        void setCamera(Camera* camera);
+        void centerWindow(GLFWmonitor* monitor);
 
         bool active();
 

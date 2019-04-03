@@ -39,6 +39,7 @@ Display::Display(const unsigned int width, const unsigned int height, const std:
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, scroll_callback);
 
+    centerWindow(glfwGetPrimaryMonitor());
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -83,6 +84,31 @@ void Display::swapBuffers()
 void Display::pollEvents()
 {
     glfwPollEvents();
+}
+
+void Display::setCamera(Camera* camera)
+{
+    currentCamera = camera;
+}
+
+void Display::centerWindow(GLFWmonitor* monitor)
+{
+    if(monitor == NULL)
+        return;
+    
+    const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+    if(mode == NULL)
+        return;
+    
+    int monitorX;
+    int monitorY;
+    glfwGetMonitorPos(monitor, &monitorX, &monitorY);
+
+    int windowWidth;
+    int windowHeight;
+    glfwGetWindowSize(window, &windowWidth, &windowHeight);
+
+    glfwSetWindowPos(window, monitorX + (mode->width - windowWidth) / 2, monitorY + (mode->height - windowHeight) / 2);
 }
 
 bool Display::active()
