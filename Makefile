@@ -6,9 +6,21 @@ SYSTEM		= time.o
 OBJECTS		= glad.o $(GRAPHICS) $(SYSTEM) main.o
 CXX_FLAGS	= -std=c++11
 INCLUDE		= -Iinclude/
-LIBS		= -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32
 
-all: build trash
+C_OS		:=
+LIBS		:=
+ifeq ($(OS),Windows_NT)
+	C_OS += Windows
+	LIBS += -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32
+else
+	C_OS += Linux
+	LIBS += -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl
+endif
+
+all: os build trash
+
+os:
+	@echo $(C_OS)
 
 build: $(OBJECTS)
 	$(CXX) $(CXX_FLAGS) $(OBJECTS) $(INCLUDE) $(LIBS) -o main
