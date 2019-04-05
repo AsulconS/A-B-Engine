@@ -32,6 +32,8 @@ class Camera
         void rotate(float _yaw, float _pitch);
         void zoom(float amount);
 
+        glm::vec3 getFront();
+
         // Get Matrix Functions
         glm::mat4 getViewMatrix();
         glm::mat4 getProjectionMatrix(float aspect);

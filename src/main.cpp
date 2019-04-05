@@ -17,7 +17,8 @@ int main()
     display.setCamera(&camera);
 
     // Shader lightingShader("directionalLight");
-    Shader lightingShader("pointLight");
+    // Shader lightingShader("pointLight");
+    Shader lightingShader("spotLight");
     Shader lampShader("lamp");
 
     float vertexData[] =
@@ -136,12 +137,19 @@ int main()
     lightingShader.setInt("material.specular", 1);
     lightingShader.setFloat("material.shininess", 64.0f);
 
-    lightingShader.setVec3("light.position", lightPos);
+    // Light Parameters
+    lightingShader.setVec3("light.position", camera.position);
     // lightingShader.setVec3("light.direction", -0.2f, -1.0f, -0.3f);
+    lightingShader.setVec3("light.direction", camera.getFront());
+    lightingShader.setFloat("light.cutOff", glm::cos(glm::radians(12.5f)));
+    lightingShader.setFloat("light.outerCutOff", glm::cos(glm::radians(17.5f)));
+
+    // Light Intensity
     lightingShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
     lightingShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
     lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
 
+    // Attenuation
     lightingShader.setFloat("light.constant", 1.0f);
     lightingShader.setFloat("light.linear", 0.07f);
     lightingShader.setFloat("light.quadratic", 0.017f);
@@ -167,6 +175,8 @@ int main()
         lightingShader.setMat4("projection", projection);
 
         lightingShader.setVec3("viewPos", camera.position);
+        lightingShader.setVec3("light.position", camera.position);
+        lightingShader.setVec3("light.direction", camera.getFront());
 
         // Texture Processing
         texture.bind();

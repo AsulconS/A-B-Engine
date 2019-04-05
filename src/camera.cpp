@@ -87,6 +87,11 @@ void Camera::zoom(float amount)
         fov = 45.0f;
 }
 
+glm::vec3 Camera::getFront()
+{
+    return front;
+}
+
 void Camera::updateCameraVectors()
 {
     glm::vec3 nFront;
