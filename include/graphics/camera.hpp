@@ -7,7 +7,7 @@
 #include <iostream>
 
 #define POS glm::vec3(0.0f, 0.0f, 0.0f)
-#define VUP glm::vec3(0.0f, 1.0f, 0.0f)
+#define WUP glm::vec3(0.0f, 1.0f, 0.0f)
 
 enum class CameraMovement
 {
@@ -24,7 +24,7 @@ class Camera
     public:
         glm::vec3 position;
 
-        Camera(glm::vec3 _position = POS, glm::vec3 _worldUp = VUP, float _yaw = YAW, float _pitch = PITCH, float _fov = FOV, float _cNear = CNEAR, float _cFar = CFAR);
+        Camera(glm::vec3 _position = POS, glm::vec3 _worldUp = WUP, float _yaw = YAW, float _pitch = PITCH, float _fov = FOV, float _cNear = CNEAR, float _cFar = CFAR);
         virtual ~Camera();
 
         // Movement Functions

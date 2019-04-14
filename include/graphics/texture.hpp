@@ -9,41 +9,20 @@
 class Texture
 {
     public:
-        Texture(const std::string& name, GLenum format, int texUnit);
+        Texture();
+        Texture(const char* _filename, const std::string& directory, const std::string& _type);
         virtual ~Texture();
 
+        void load(const char* _filename, const std::string& directory, const std::string& _type);
+        void free();
         void bind();
+
+        std::string filename;
+        std::string type;
 
     private:
         // Texture by itself
         GLuint texture;
-        int textureUnit;
-
-        // RAW Data
-        int width;
-        int height;
-        int nrChannels;
-        unsigned char* data;
-};
-
-class Texture2
-{
-    public:
-        Texture2(const std::string& name1, GLenum format1, int texUnit1, const std::string& name2, GLenum format2, int texUnit2);
-        virtual ~Texture2();
-
-        void bind();
-
-    private:
-        // Texture by itself
-        GLuint texture[2];
-        int textureUnit[2];
-
-        // RAW Data
-        int width[2];
-        int height[2];
-        int nrChannels[2];
-        unsigned char* data[2];
 };
 
 #endif // TEXTURE_H

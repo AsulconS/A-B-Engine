@@ -1,7 +1,7 @@
 CC	= gcc
 CXX	= g++
 
-GRAPHICS	= display.o shader.o camera.o texture.o
+GRAPHICS	= display.o shader.o camera.o mesh.o model.o texture.o
 SYSTEM		= time.o
 OBJECTS		= glad.o $(GRAPHICS) $(SYSTEM) main.o
 CXX_FLAGS	= -std=c++11
@@ -11,10 +11,10 @@ C_OS		:=
 LIBS		:=
 ifeq ($(OS),Windows_NT)
 	C_OS += Windows
-	LIBS += -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32
+	LIBS += -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32 -lassimp
 else
 	C_OS += Linux
-	LIBS += -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl
+	LIBS += -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl -lassimp
 endif
 
 all: os build trash
@@ -40,6 +40,12 @@ camera.o: src/camera.cpp
 
 texture.o: src/texture.cpp
 	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/texture.cpp
+
+mesh.o: src/mesh.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/mesh.cpp
+
+model.o: src/model.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/model.cpp
 
 time.o: src/time.cpp
 	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/time.cpp

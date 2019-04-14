@@ -7,7 +7,7 @@ float Display::lastX = 0.0f;
 float Display::lastY = 0.0f;
 float Display::deltaX = 0.0f;
 float Display::deltaY = 0.0f;
-bool Display::firstMouse = false;
+bool  Display::firstMouse = false;
 
 Display::Display(const unsigned int width, const unsigned int height, const std::string& title, const unsigned int glVersion, Camera* camera)
 {

@@ -3,61 +3,14 @@
 #define  STB_IMAGE_IMPLEMENTATION
 #include "graphics/stb_image.h"
 
-Texture::Texture(const std::string& name, GLenum format, int texUnit)
+Texture::Texture()
 {
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    // Load RAW Data
-    std::string path = "res/textures/" + name;
-    stbi_set_flip_vertically_on_load(true);
-    data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
-    if(data)
-    {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cerr << "Failed to load texture" << std::endl;
-    }
-    stbi_image_free(data);
-    textureUnit = texUnit;
+    //
 }
 
-Texture2::Texture2(const std::string& name1, GLenum format1, int texUnit1, const std::string& name2, GLenum format2, int texUnit2)
+Texture::Texture(const char* _filename, const std::string& directory, const std::string& _type)
 {
-    glGenTextures(2, texture);
-    for(size_t i = 0; i < 2; ++i)
-    {
-        glBindTexture(GL_TEXTURE_2D, texture[i]);
-
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        // Load RAW Data
-        std::string path = "res/textures/" + ((i == 0) ? name1 : name2);
-        stbi_set_flip_vertically_on_load(true);
-        data[i] = stbi_load(path.c_str(), &width[i], &height[i], &nrChannels[i], 0);
-        if(data)
-        {
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width[i], height[i], 0, ((i == 0) ? format1 : format2), GL_UNSIGNED_BYTE, data[i]);
-            glGenerateMipmap(GL_TEXTURE_2D);
-        }
-        else
-        {
-            std::cerr << "Failed to load texture" << std::endl;
-        }
-        stbi_image_free(data[i]);
-        textureUnit[i] = (i == 0) ? texUnit1 : texUnit2;
-    }
+    load(_filename, directory, _type);
 }
 
 Texture::~Texture()
@@ -65,21 +18,50 @@ Texture::~Texture()
     //
 }
 
-Texture2::~Texture2()
+void Texture::load(const char* _filename, const std::string& directory, const std::string& _type)
 {
-    //
+    filename = std::string(_filename);
+    std::string path = directory + '/' + filename;
+    type = _type;
+
+    glGenTextures(1, &texture);
+    int width, height, nrComponents; // stbi_set_flip_vertically_on_load(true);
+    unsigned char* data = stbi_load(path.c_str(), &width, &height, &nrComponents, 0);
+    // Load RAW Data
+    if(data)
+    {
+        GLenum format;
+        if(nrComponents == 1)
+            format = GL_RED;
+        else if(nrComponents == 3)
+            format = GL_RGB;
+        else if(nrComponents == 4)
+            format = GL_RGBA;
+        
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        stbi_image_free(data);
+    }
+    else
+    {
+        std::cerr << "Failed to load texture" << std::endl;
+        stbi_image_free(data);
+    }
+}
+
+void Texture::free()
+{
+    glDeleteTextures(1, &texture);
 }
 
 void Texture::bind()
 {
-    glActiveTexture(GL_TEXTURE0 + textureUnit);
     glBindTexture(GL_TEXTURE_2D, texture);
-}
-
-void Texture2::bind()
-{
-    glActiveTexture(GL_TEXTURE0 + textureUnit[0]);
-    glBindTexture(GL_TEXTURE_2D, texture[0]);
-    glActiveTexture(GL_TEXTURE0 + textureUnit[1]);
-    glBindTexture(GL_TEXTURE_2D, texture[1]);
 }
