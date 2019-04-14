@@ -1,0 +1,29 @@
+A&B Engine
+
+Copyright (c) 2019, A&B team
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+******************************************************************************
+
+AN EXCEPTION applies to all files in the ./res/models folder and
+almost all textures in the ./res/textures folder. These are textures
+and 3D models for testing purposes, from various free sources
+on the internet. They are - unless otherwise stated - copyright of
+their respective creators, which may impose additional requirements
+on the use of their work. For any of these models, see the
+LICENSE.txt included in the model folder for more legal information.
+Contact us if you are a copyright holder and believe that we credited
+you inproperly or if you don't want your files to appear in the repository.
+
+******************************************************************************
