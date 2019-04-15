@@ -8,11 +8,8 @@ void Mesh::loadDefaultSpecTex()
 }
 
 Mesh::Mesh(const std::vector<Vertex>& v, const std::vector<GLuint>& i, const std::vector<Texture>& t)
+    : vertices(v), indices(i), textures(t)
 {
-    vertices = v;
-    indices = i;
-    textures = t;
-
     setupMesh();
 }
 

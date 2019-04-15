@@ -31,8 +31,8 @@ public:
     void zoom(float amount);
 
     // Gett Camera Attributes
-    glm::vec3 getPosition();
-    glm::vec3 getFront();
+    glm::vec3 getPosition() { return position; }
+    glm::vec3 getFront() { return front; }
 
     // Get Matrix Functions
     glm::mat4 getViewMatrix();
@@ -57,9 +57,6 @@ private:
     float cNear;
     float cFar;
 
-    // Private Functions
-    void updateCameraVectors();
-
     // Static Constant Variables
     static const float YAW;
     static const float PITCH;
@@ -68,6 +65,9 @@ private:
     static const float FOV;
     static const float CNEAR;
     static const float CFAR;
+
+    // Private Functions
+    void updateCameraVectors();
 };
 
 #endif // CAMERA_H

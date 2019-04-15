@@ -9,19 +9,11 @@ const float Camera::CNEAR       = 0.1f;
 const float Camera::CFAR        = 100.0f;
 
 Camera::Camera(glm::vec3 _position, glm::vec3 _worldUp, float _yaw, float _pitch, float _fov, float _cNear, float _cFar)
+    : position(_position), worldUp(_worldUp), yaw(_yaw), pitch(_pitch), fov(_fov), cNear(_cNear), cFar(_cFar)
 {
-    position = _position;
-    worldUp = _worldUp;
-
-    yaw = _yaw;
-    pitch = _pitch;
     updateCameraVectors();
-
     movementSpeed = SPEED;
     mouseSensitivity = SENSITIVITY;
-    fov = _fov;
-    cNear = _cNear;
-    cFar = _cFar;
 }
 
 Camera::~Camera()
@@ -61,7 +53,6 @@ void Camera::move(CameraMovement direction, float deltaTime)
         default:
             break;
     }
-    // position.y = 0.0f;
 }
 
 void Camera::rotate(float _yaw, float _pitch)
@@ -85,16 +76,6 @@ void Camera::zoom(float amount)
         fov = 1.0f;
     if(fov >= 45.0f)
         fov = 45.0f;
-}
-
-glm::vec3 Camera::getPosition()
-{
-    return position;
-}
-
-glm::vec3 Camera::getFront()
-{
-    return front;
 }
 
 void Camera::updateCameraVectors()
