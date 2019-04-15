@@ -18,25 +18,25 @@ struct Vertex
 
 class Mesh
 {
-    public:
-        Mesh(const std::vector<Vertex>& v, const std::vector<GLuint>& i, const std::vector<Texture>& t);
-        virtual ~Mesh();
+public:
+    Mesh(const std::vector<Vertex>& v, const std::vector<GLuint>& i, const std::vector<Texture>& t);
+    virtual ~Mesh();
 
-        void draw(Shader& shader);
-        void freeMesh();
+    void draw(Shader& shader);
+    void freeMesh();
 
-        static void loadDefaultSpecTex();
+    static void loadDefaultSpecTex();
 
-    private:
-        std::vector<Vertex> vertices;
-        std::vector<GLuint> indices;
-        std::vector<Texture> textures;
+private:
+    std::vector<Vertex> vertices;
+    std::vector<GLuint> indices;
+    std::vector<Texture> textures;
 
-        GLuint VAO, VBO, EBO;
+    GLuint VAO, VBO, EBO;
 
-        static Texture defaultSpecTex;
+    static Texture defaultSpecTex;
 
-        void setupMesh();
+    void setupMesh();
 };
 
 #endif // MESH_H

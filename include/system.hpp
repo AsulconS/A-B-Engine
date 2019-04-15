@@ -3,4 +3,4 @@
 
 #include "system/time.hpp"
 
-#endif // GRAPHICS_H
+#endif // SYSTEM_H

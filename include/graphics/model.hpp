@@ -13,22 +13,22 @@
 
 class Model
 {
-    public:
-        Model(const std::string& path);
-        virtual ~Model();
+public:
+    Model(const std::string& path);
+    virtual ~Model();
 
-        void draw(Shader& shader);
-    
-    private:
-        // Model Data
-        std::vector<Mesh> meshes;
-        std::vector<Texture> texturesLoaded;
-        std::string directory;
+    void draw(Shader& shader);
 
-        void loadModel(const std::string& path);
-        void processNode(aiNode* node, const aiScene* scene);
-        Mesh processMesh(aiMesh* mesh, const aiScene* scene);
-        std::vector<Texture> loadMaterialTextures(aiMaterial* material, aiTextureType type, const std::string& typeName);
+private:
+    // Model Data
+    std::vector<Mesh> meshes;
+    std::vector<Texture> texturesLoaded;
+    std::string directory;
+
+    void loadModel(const std::string& path);
+    void processNode(aiNode* node, const aiScene* scene);
+    Mesh processMesh(aiMesh* mesh, const aiScene* scene);
+    std::vector<Texture> loadMaterialTextures(aiMaterial* material, aiTextureType type, const std::string& typeName);
 };
 
 #endif // MODEL_H

@@ -4,5 +4,4 @@ obj/
 *.cbp
 *.depend
 *.layout
-include/ecs/*
 main*
