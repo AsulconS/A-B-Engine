@@ -9,6 +9,7 @@
 
 #include "system/time.hpp"
 #include "graphics/camera.hpp"
+#include "graphics/light.hpp"
 
 class Display
 {
@@ -16,7 +17,7 @@ class Display
         Display(const unsigned int width, const unsigned int height, const std::string& title, const unsigned int glVersion, Camera* camera = NULL);
         virtual ~Display();
 
-        void processInput();
+        void processInput(Light& light);
         void swapBuffers();
         void pollEvents();
 

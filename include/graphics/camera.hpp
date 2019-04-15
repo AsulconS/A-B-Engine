@@ -22,8 +22,6 @@ enum class CameraMovement
 class Camera
 {
     public:
-        glm::vec3 position;
-
         Camera(glm::vec3 _position = POS, glm::vec3 _worldUp = WUP, float _yaw = YAW, float _pitch = PITCH, float _fov = FOV, float _cNear = CNEAR, float _cFar = CFAR);
         virtual ~Camera();
 
@@ -32,6 +30,8 @@ class Camera
         void rotate(float _yaw, float _pitch);
         void zoom(float amount);
 
+        // Gett Camera Attributes
+        glm::vec3 getPosition();
         glm::vec3 getFront();
 
         // Get Matrix Functions
@@ -40,6 +40,7 @@ class Camera
 
     private:
         // Camera Attributes
+        glm::vec3 position;
         glm::vec3 front;
         glm::vec3 up;
         glm::vec3 right;

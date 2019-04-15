@@ -15,6 +15,11 @@ int main()
 
     Model nanosuit("res/models/nanosuit/nanosuit.obj");
 
+    DirectionalLight dirLight(&lightingShader, glm::vec3(-0.2f, -1.0f, -0.3f),  // Direction
+                                               glm::vec3( 0.2f,  0.2f,  0.2f),  // Ambient
+                                               glm::vec3( 0.5f,  0.5f,  0.5f),  // Diffuse
+                                               glm::vec3( 1.0f,  1.0f,  1.0f)); // Specular
+
     glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 
     // After Setup
@@ -30,18 +35,11 @@ int main()
     lightingShader.setMat4("projection", projection);
 
     // Setting up Fragment Shader Uniforms
-    lightingShader.setVec3("viewPos", camera.position);
-
-    // Light Parameters
-    // Directional Light
-    lightingShader.setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
-
-    // Light Intensity
-    lightingShader.setVec3("dirLight.ambient", 0.2f, 0.2f, 0.2f);
-    lightingShader.setVec3("dirLight.diffuse", 0.5f, 0.5f, 0.5f);
-    lightingShader.setVec3("dirLight.specular", 1.0f, 1.0f, 1.0f);
+    lightingShader.setVec3("viewPos", camera.getPosition());
 
     // Point Light
+    lightingShader.setInt("nrPointLights", 1);
+
     lightingShader.setVec3( "pointLights[0].position", lightPos);
 
     lightingShader.setVec3( "pointLights[0].ambient", 0.2f, 0.2f, 0.2f);
@@ -53,7 +51,7 @@ int main()
     lightingShader.setFloat("pointLights[0].quadratic", 0.032f);
 
     // Spot Light
-    lightingShader.setVec3("spotLight.position", camera.position);
+    lightingShader.setVec3("spotLight.position", camera.getPosition());
     lightingShader.setVec3("spotLight.direction", camera.getFront());
 
     lightingShader.setVec3("spotLight.ambient", 0.2f, 0.2f, 0.2f);
@@ -73,7 +71,7 @@ int main()
     while(display.active())
     {
         // Processing Input
-        display.processInput();
+        display.processInput(dirLight);
 
         // glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -90,9 +88,9 @@ int main()
         lightingShader.setMat4("view", view);
         lightingShader.setMat4("projection", projection);
 
-        lightingShader.setVec3("viewPos", camera.position);
+        lightingShader.setVec3("viewPos", camera.getPosition());
         lightingShader.setVec3("pointLights[0].position", lightPos);
-        lightingShader.setVec3("spotLight.position", camera.position);
+        lightingShader.setVec3("spotLight.position", camera.getPosition());
         lightingShader.setVec3("spotLight.direction", camera.getFront());
 
         nanosuit.draw(lightingShader);

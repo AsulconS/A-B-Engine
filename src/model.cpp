@@ -32,7 +32,7 @@ void Model::loadModel(const std::string& path)
     processNode(scene->mRootNode, scene);
 
     // Load the Mesh Black Default Specular Map
-    Mesh::defaultTex.load("default.png", "res/textures", "texture_specular");
+    Mesh::loadDefaultSpecTex();
 }
 
 void Model::processNode(aiNode* node, const aiScene* scene)
@@ -114,7 +114,7 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial* material, aiTexture
         bool skip = false;
         for(size_t j = 0; j < texturesLoaded.size(); ++j)
         {
-            if(std::strcmp(texturesLoaded[j].filename.data(), str.C_Str()) == 0)
+            if(std::strcmp(texturesLoaded[j].getFilename().data(), str.C_Str()) == 0)
             {
                 textures.push_back(texturesLoaded[j]);
                 skip = true;

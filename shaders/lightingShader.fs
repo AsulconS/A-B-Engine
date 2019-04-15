@@ -36,7 +36,7 @@ struct PointLight
     float linear;
     float quadratic;
 };
-#define NR_POINT_LIGHTS 1
+#define MAX_POINT_LIGHTS 32
 
 struct SpotLight
 {
@@ -63,7 +63,8 @@ uniform vec3 viewPos;
 uniform Material material;
 
 uniform DirLight dirLight;
-uniform PointLight pointLights[NR_POINT_LIGHTS];
+uniform int nrPointLights;
+uniform PointLight pointLights[MAX_POINT_LIGHTS];
 uniform SpotLight spotLight;
 
 void main()
@@ -75,7 +76,7 @@ void main()
     // Directional Lighting
     vec3 result = calcDirLight(dirLight, norm, viewDir);
     // Point Lights
-    for(int i = 0; i < NR_POINT_LIGHTS; ++i)
+    for(int i = 0; i < nrPointLights; ++i)
         result += calcPointLight(pointLights[i], norm, fragPos, viewDir);
     // Spot Lights
     result += calcSpotLight(spotLight, norm, fragPos, viewDir);

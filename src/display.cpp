@@ -57,7 +57,7 @@ Display::~Display()
     //
 }
 
-void Display::processInput()
+void Display::processInput(Light& light)
 {
     float deltaTime = Time::getDeltaTime();
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -74,6 +74,10 @@ void Display::processInput()
         currentCamera->move(CameraMovement::UP, deltaTime);
     if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
         currentCamera->move(CameraMovement::DOWN, deltaTime);
+    if(glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+        light.disable();
+    if(glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+        light.enable();
 }
 
 void Display::swapBuffers()

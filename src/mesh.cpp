@@ -1,6 +1,11 @@
 #include "graphics/mesh.hpp"
 
-Texture Mesh::defaultTex;
+Texture Mesh::defaultSpecTex;
+
+void Mesh::loadDefaultSpecTex()
+{
+    defaultSpecTex.load("default.png", "res/textures", "texture_specular");
+}
 
 Mesh::Mesh(const std::vector<Vertex>& v, const std::vector<GLuint>& i, const std::vector<Texture>& t)
 {
@@ -22,14 +27,14 @@ void Mesh::draw(Shader& shader)
     for(size_t i = 0; i < textures.size(); ++i)
     {
         glActiveTexture(GL_TEXTURE0 + i);
-        shader.setFloat("material." + textures[i].type, i);
+        shader.setFloat("material." + textures[i].getType(), i);
         textures[i].bind();
     }
     if(textures.size() == 1)
     {
         glActiveTexture(GL_TEXTURE1);
         shader.setFloat("material.texture_specular", 1);
-        defaultTex.bind();
+        defaultSpecTex.bind();
     }
 
     glActiveTexture(GL_TEXTURE0);

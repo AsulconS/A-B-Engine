@@ -25,7 +25,7 @@ class Mesh
         void draw(Shader& shader);
         void freeMesh();
 
-        static Texture defaultTex;
+        static void loadDefaultSpecTex();
 
     private:
         std::vector<Vertex> vertices;
@@ -33,6 +33,8 @@ class Mesh
         std::vector<Texture> textures;
 
         GLuint VAO, VBO, EBO;
+
+        static Texture defaultSpecTex;
 
         void setupMesh();
 };

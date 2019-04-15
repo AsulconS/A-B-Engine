@@ -61,6 +61,16 @@ void Texture::free()
     glDeleteTextures(1, &texture);
 }
 
+std::string Texture::getFilename()
+{
+    return filename;
+}
+
+std::string Texture::getType()
+{
+    return type;
+}
+
 void Texture::bind()
 {
     glBindTexture(GL_TEXTURE_2D, texture);

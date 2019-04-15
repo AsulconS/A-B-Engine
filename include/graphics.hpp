@@ -5,5 +5,6 @@
 #include "graphics/shader.hpp"
 #include "graphics/texture.hpp"
 #include "graphics/model.hpp"
+#include "graphics/light.hpp"
 
 #endif // GRAPHICS_H

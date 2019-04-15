@@ -17,12 +17,15 @@ class Texture
         void free();
         void bind();
 
-        std::string filename;
-        std::string type;
+        std::string getFilename();
+        std::string getType();
 
     private:
         // Texture by itself
         GLuint texture;
+
+        std::string filename;
+        std::string type;
 };
 
 #endif // TEXTURE_H
