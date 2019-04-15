@@ -1,4 +1,5 @@
 #include "graphics.hpp"
+#include "system.hpp"
 
 // Settings
 const unsigned int SCR_WIDTH = 1408; // 800 (LEGACY)
@@ -47,8 +48,8 @@ int main()
     lightingShader.setVec3( "pointLights[0].specular", 1.0f, 1.0f, 1.0f);
 
     lightingShader.setFloat("pointLights[0].constant", 1.0f);
-    lightingShader.setFloat("pointLights[0].linear", 0.09f);
-    lightingShader.setFloat("pointLights[0].quadratic", 0.032f);
+    lightingShader.setFloat("pointLights[0].linear", 0.045f);
+    lightingShader.setFloat("pointLights[0].quadratic", 0.0075f);
 
     // Spot Light
     lightingShader.setVec3("spotLight.position", camera.getPosition());
@@ -62,8 +63,8 @@ int main()
     lightingShader.setFloat("spotLight.outerCutOff", glm::cos(glm::radians(17.5f)));
 
     lightingShader.setFloat("spotLight.constant", 1.0f);
-    lightingShader.setFloat("spotLight.linear", 0.09f);
-    lightingShader.setFloat("spotLight.quadratic", 0.032f);
+    lightingShader.setFloat("spotLight.linear", 0.045f);
+    lightingShader.setFloat("spotLight.quadratic", 0.0075f);
 
     lightingShader.setFloat("material.shininess", 64);
 
@@ -71,7 +72,7 @@ int main()
     while(display.active())
     {
         // Processing Input
-        display.processInput(dirLight);
+        display.processInput(&dirLight);
 
         // glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -82,7 +83,6 @@ int main()
         // Camera Processing
         view = camera.getViewMatrix();
         projection = camera.getProjectionMatrix(ASPECT);
-        lightPos.y += Time::getDeltaTime() * 10.0f;
 
         lightingShader.use();
         lightingShader.setMat4("view", view);

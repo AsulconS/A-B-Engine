@@ -29,30 +29,30 @@ glad.o: src/glad.c
 	$(CC) -c src/glad.c
 
 # GRAPHICS
-display.o: src/display.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/display.cpp
+display.o: src/graphics/display.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/display.cpp
 
-shader.o: src/shader.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/shader.cpp
+shader.o: src/graphics/shader.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/shader.cpp
 
-camera.o: src/camera.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/camera.cpp
+camera.o: src/graphics/camera.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/camera.cpp
 
-texture.o: src/texture.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/texture.cpp
+texture.o: src/graphics/texture.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/texture.cpp
 
-mesh.o: src/mesh.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/mesh.cpp
+mesh.o: src/graphics/mesh.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/mesh.cpp
 
-model.o: src/model.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/model.cpp
+model.o: src/graphics/model.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/model.cpp
 
-light.o: src/light.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/light.cpp
+light.o: src/graphics/light.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/light.cpp
 
 # SYSTEM
-time.o: src/time.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/time.cpp
+time.o: src/system/time.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/system/time.cpp
 
 # MAIN
 main.o: src/main.cpp

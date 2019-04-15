@@ -17,7 +17,7 @@ class Display
         Display(const unsigned int width, const unsigned int height, const std::string& title, const unsigned int glVersion, Camera* camera = NULL);
         virtual ~Display();
 
-        void processInput(Light& light);
+        void processInput(Light* light);
         void swapBuffers();
         void pollEvents();
 
