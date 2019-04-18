@@ -52,10 +52,7 @@ Display::Display(const unsigned int width, const unsigned int height, const std:
     glEnable(GL_DEPTH_TEST);
 }
 
-Display::~Display()
-{
-    //
-}
+Display::~Display() {}
 
 void Display::processInput(Light* light)
 {

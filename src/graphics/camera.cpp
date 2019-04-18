@@ -16,10 +16,7 @@ Camera::Camera(glm::vec3 _position, glm::vec3 _worldUp, float _yaw, float _pitch
     mouseSensitivity = SENSITIVITY;
 }
 
-Camera::~Camera()
-{
-    //
-}
+Camera::~Camera() {}
 
 void Camera::move(CameraMovement direction, float deltaTime)
 {

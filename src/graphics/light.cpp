@@ -9,10 +9,7 @@ Light::Light(Shader* _shader, const glm::vec3& _position,
     //
 }
 
-Light::~Light()
-{
-    //
-}
+Light::~Light() {}
 
 DirectionalLight::DirectionalLight(Shader* _shader, const glm::vec3& _dir,
                                                     const glm::vec3& _ambient,

@@ -3,20 +3,14 @@
 #define  STB_IMAGE_IMPLEMENTATION
 #include "graphics/stb_image.h"
 
-Texture::Texture()
-{
-    //
-}
+Texture::Texture() {}
 
 Texture::Texture(const char* _filename, const std::string& directory, const std::string& _type)
 {
     load(_filename, directory, _type);
 }
 
-Texture::~Texture()
-{
-    //
-}
+Texture::~Texture() {}
 
 void Texture::load(const char* _filename, const std::string& directory, const std::string& _type)
 {

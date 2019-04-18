@@ -1,7 +1,7 @@
 CC	= gcc
 CXX	= g++
 
-GRAPHICS	= display.o shader.o camera.o texture.o mesh.o model.o light.o
+GRAPHICS	= display.o shader.o camera.o texture.o mesh.o model.o transform.o light.o
 SYSTEM		= time.o
 OBJECTS		= glad.o $(GRAPHICS) $(SYSTEM) main.o
 CXX_FLAGS	= -std=c++11
@@ -46,6 +46,9 @@ mesh.o: src/graphics/mesh.cpp
 
 model.o: src/graphics/model.cpp
 	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/model.cpp
+
+transform.o: src/graphics/transform.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/transform.cpp
 
 light.o: src/graphics/light.cpp
 	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/light.cpp
