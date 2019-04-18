@@ -90,12 +90,17 @@ void Camera::updateCameraVectors()
     up    = glm::normalize(glm::cross(right, front));
 }
 
-glm::mat4 Camera::getViewMatrix()
+void Camera::setPosition(const glm::vec3& pos)
+{
+    position = pos;
+}
+
+const glm::mat4 Camera::getViewMatrix() const
 {
     return glm::lookAt(position, position + front, up);
 }
 
-glm::mat4 Camera::getProjectionMatrix(float aspect)
+const glm::mat4 Camera::getProjectionMatrix(float aspect) const
 {
     return glm::perspective(glm::radians(fov), aspect, cNear, cFar);
 }

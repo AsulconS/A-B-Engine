@@ -24,7 +24,7 @@ void Model::loadModel(const std::string& path)
 
     if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
-        std::cerr << "ERROR::ASSIMP::" << import.GetErrorString() << std::endl;
+        std::cerr << "Assimp : Error Loading Model : " << import.GetErrorString() << std::endl;
         return;
     }
     directory = path.substr(0, path.find_last_of('/'));
@@ -57,24 +57,24 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
     for(size_t i = 0; i < mesh->mNumVertices; ++i)
     {
         Vertex vertex;
-        glm::vec3 vector;
+        glm::vec3 placeholder;
 
-        vector.x = mesh->mVertices[i].x;
-        vector.y = mesh->mVertices[i].y;
-        vector.z = mesh->mVertices[i].z;
-        vertex.position = vector;
+        placeholder.x = mesh->mVertices[i].x;
+        placeholder.y = mesh->mVertices[i].y;
+        placeholder.z = mesh->mVertices[i].z;
+        vertex.position = placeholder;
 
-        vector.x = mesh->mNormals[i].x;
-        vector.y = mesh->mNormals[i].y;
-        vector.z = mesh->mNormals[i].z;
-        vertex.normal = vector;
+        placeholder.x = mesh->mNormals[i].x;
+        placeholder.y = mesh->mNormals[i].y;
+        placeholder.z = mesh->mNormals[i].z;
+        vertex.normal = placeholder;
 
         if(mesh->mTextureCoords[0])
         {
-            glm::vec2 vec;
-            vec.x = mesh->mTextureCoords[0][i].x;
-            vec.y = mesh->mTextureCoords[0][i].y;
-            vertex.UV = vec;
+            glm::vec2 coords;
+            coords.x = mesh->mTextureCoords[0][i].x;
+            coords.y = mesh->mTextureCoords[0][i].y;
+            vertex.UV = coords;
         }
         else
             vertex.UV = glm::vec2(0.0f, 0.0f);

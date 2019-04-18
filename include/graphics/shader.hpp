@@ -26,12 +26,12 @@ public:
     void setVec3(const std::string& name, float v0, float v1, float v2);
     void setVec4(const std::string& name, float v0, float v1, float v2, float v3);
 
-    void setVec2(const std::string& name, glm::vec2 v);
-    void setVec3(const std::string& name, glm::vec3 v);
-    void setVec4(const std::string& name, glm::vec4 v);
+    void setVec2(const std::string& name, const glm::vec2& v);
+    void setVec3(const std::string& name, const glm::vec3& v);
+    void setVec4(const std::string& name, const glm::vec4& v);
 
-    void setMat3(const std::string& name, glm::mat3& m0);
-    void setMat4(const std::string& name, glm::mat4& m0);
+    void setMat3(const std::string& name, const glm::mat3& m0);
+    void setMat4(const std::string& name, const glm::mat4& m0);
 
 private:
     enum

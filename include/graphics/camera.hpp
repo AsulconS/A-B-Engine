@@ -30,13 +30,16 @@ public:
     void rotate(float _yaw, float _pitch);
     void zoom(float amount);
 
-    // Gett Camera Attributes
-    glm::vec3 getPosition() { return position; }
-    glm::vec3 getFront() { return front; }
+    // Set Camera Attributes
+    void setPosition(const glm::vec3& pos);
+
+    // Get Camera Attributes
+    const glm::vec3& getPosition() const { return position; }
+    const glm::vec3& getFront() const { return front; }
 
     // Get Matrix Functions
-    glm::mat4 getViewMatrix();
-    glm::mat4 getProjectionMatrix(float aspect);
+    const glm::mat4 getViewMatrix() const;
+    const glm::mat4 getProjectionMatrix(float aspect) const;
 
 private:
     // Camera Attributes
@@ -57,7 +60,7 @@ private:
     float cNear;
     float cFar;
 
-    // Static Constant Variables
+    // Static Constant Default Variables
     static const float YAW;
     static const float PITCH;
     static const float SPEED;

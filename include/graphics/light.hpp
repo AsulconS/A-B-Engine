@@ -8,7 +8,10 @@
 class Light
 {
 public:
-    Light(Shader* _shader, glm::vec3 _position, glm::vec3 _ambient, glm::vec3 _diffuse, glm::vec3 _specular);
+    Light(Shader* _shader, const glm::vec3& _position,
+                           const glm::vec3& _ambient,
+                           const glm::vec3& _diffuse,
+                           const glm::vec3& _specular);
     virtual ~Light();
 
     virtual void enable() = 0;
@@ -28,7 +31,10 @@ protected:
 class DirectionalLight : public Light
 {
 public:
-    DirectionalLight(Shader* _shader, glm::vec3 _dir, glm::vec3 _ambient, glm::vec3 _diffuse, glm::vec3 _specular);
+    DirectionalLight(Shader* _shader, const glm::vec3& _dir,
+                                      const glm::vec3& _ambient,
+                                      const glm::vec3& _diffuse,
+                                      const glm::vec3& _specular);
     virtual ~DirectionalLight();
 
     virtual void enable();
