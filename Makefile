@@ -2,7 +2,7 @@ CC	= gcc
 CXX	= g++
 
 GRAPHICS	= display.o shader.o camera.o texture.o mesh.o model.o transform.o light.o
-SYSTEM		= time.o
+SYSTEM		= time.o cameraEventHandler.o
 OBJECTS		= glad.o $(GRAPHICS) $(SYSTEM) main.o
 CXX_FLAGS	= -std=c++11
 INCLUDE		= -Iinclude/
@@ -56,6 +56,9 @@ light.o: src/graphics/light.cpp
 # SYSTEM
 time.o: src/system/time.cpp
 	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/system/time.cpp
+
+cameraEventHandler.o: src/system/cameraEventHandler.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/system/cameraEventHandler.cpp
 
 # MAIN
 main.o: src/main.cpp

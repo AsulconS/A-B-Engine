@@ -12,6 +12,8 @@ int main()
     Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
     display.setCamera(&camera);
 
+    CameraEventHandler cameraEventHandler(&camera);
+
     Shader lightingShader("lightingShader");
 
     Model nanosuit("res/models/nanosuit/nanosuit.obj");
@@ -72,7 +74,7 @@ int main()
     while(display.active())
     {
         // Processing Input
-        display.processInput(&dirLight);
+        display.processInput(cameraEventHandler, &dirLight);
 
         // glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);

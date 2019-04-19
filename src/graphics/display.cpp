@@ -9,10 +9,10 @@ float Display::deltaX = 0.0f;
 float Display::deltaY = 0.0f;
 bool  Display::firstMouse = false;
 
-Display::Display(const unsigned int width, const unsigned int height, const std::string& title, const unsigned int glVersion, Camera* camera)
+Display::Display(const unsigned int width, const unsigned int height, const std::string& title, const unsigned int glVersion)
 {
     // Initializing Members
-    currentCamera = camera;
+    currentCamera = NULL;
 
     lastX = (float)width / 2;
     lastY = (float)height / 2;
@@ -54,23 +54,26 @@ Display::Display(const unsigned int width, const unsigned int height, const std:
 
 Display::~Display() {}
 
-void Display::processInput(Light* light)
+void Display::processInput(IEventHandler& eventHandler, Light* light)
 {
     float deltaTime = Time::getDeltaTime();
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
+    
     if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        currentCamera->move(CameraMovement::FORWARD, deltaTime);
+        eventHandler.onKeyDown(GLFW_KEY_W, false, deltaTime);
     if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        currentCamera->move(CameraMovement::BACKWARD, deltaTime);
+        eventHandler.onKeyDown(GLFW_KEY_S, false, deltaTime);
     if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        currentCamera->move(CameraMovement::LEFT, deltaTime);
+        eventHandler.onKeyDown(GLFW_KEY_A, false, deltaTime);
     if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        currentCamera->move(CameraMovement::RIGHT, deltaTime);
+        eventHandler.onKeyDown(GLFW_KEY_D, false, deltaTime);
+    
     if(glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-        currentCamera->move(CameraMovement::UP, deltaTime);
+        eventHandler.onKeyDown(GLFW_KEY_SPACE, false, deltaTime);
     if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-        currentCamera->move(CameraMovement::DOWN, deltaTime);
+        eventHandler.onKeyDown(GLFW_KEY_LEFT_SHIFT, false, deltaTime);
+    
     if(glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
         light->disable();
     if(glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)

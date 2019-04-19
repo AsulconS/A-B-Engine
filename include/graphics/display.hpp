@@ -8,23 +8,26 @@
 #include <iostream>
 
 #include "system/time.hpp"
+#include "system/iEventHandler.hpp"
 #include "graphics/camera.hpp"
 #include "graphics/light.hpp"
 
 class Display
 {
 public:
-    Display(const unsigned int width, const unsigned int height, const std::string& title, const unsigned int glVersion, Camera* camera = NULL);
+    Display(const unsigned int width, const unsigned int height, const std::string& title, const unsigned int glVersion);
     virtual ~Display();
 
-    void processInput(Light* light);
     void swapBuffers();
     void pollEvents();
 
     void setCamera(Camera* camera);
+
     void centerWindow(GLFWmonitor* monitor);
 
     bool active();
+
+    static void processInput(IEventHandler& eventHandler, Light* light);
 
 private:
     static GLFWwindow* window;
