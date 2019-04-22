@@ -1,9 +1,9 @@
 CC	= gcc
 CXX	= g++
 
-GRAPHICS	= display.o shader.o camera.o texture.o mesh.o model.o transform.o light.o
+GRAPHICS	= display.o model.o mesh.o light.o shader.o texture.o transform.o camera.o
 SYSTEM		= time.o cameraEventHandler.o
-OBJECTS		= glad.o $(GRAPHICS) $(SYSTEM) main.o
+OBJECTS		= main.o $(GRAPHICS) $(SYSTEM) glad.o
 CXX_FLAGS	= -std=c++11
 INCLUDE		= -Iinclude/
 
@@ -32,26 +32,26 @@ glad.o: src/glad.c
 display.o: src/graphics/display.cpp
 	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/display.cpp
 
-shader.o: src/graphics/shader.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/shader.cpp
-
-camera.o: src/graphics/camera.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/camera.cpp
-
-texture.o: src/graphics/texture.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/texture.cpp
+model.o: src/graphics/model.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/model.cpp
 
 mesh.o: src/graphics/mesh.cpp
 	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/mesh.cpp
 
-model.o: src/graphics/model.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/model.cpp
+light.o: src/graphics/light.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/light.cpp
+
+shader.o: src/graphics/shader.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/shader.cpp
+
+texture.o: src/graphics/texture.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/texture.cpp
 
 transform.o: src/graphics/transform.cpp
 	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/transform.cpp
 
-light.o: src/graphics/light.cpp
-	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/light.cpp
+camera.o: src/graphics/camera.cpp
+	$(CXX) $(CXX_FLAGS) $(INCLUDE) -c src/graphics/camera.cpp
 
 # SYSTEM
 time.o: src/system/time.cpp
