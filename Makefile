@@ -3,16 +3,18 @@ CXX	= g++
 
 GRAPHICS	= display.o model.o mesh.o light.o shader.o texture.o transform.o camera.o
 SYSTEM		= time.o cameraEventHandler.o
-OBJECTS		= main.o $(GRAPHICS) $(SYSTEM) glad.o
 CXX_FLAGS	= -std=c++11
 INCLUDE		= -Iinclude/
 
+OBJECTS 	:=
 C_OS		:=
 LIBS		:=
 ifeq ($(OS),Windows_NT)
+	OBJECTS += main.o $(GRAPHICS) $(SYSTEM) glad.o
 	C_OS += Windows
 	LIBS += -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32 -lassimp
 else
+	OBJECTS += glad.o $(SYSTEM) $(GRAPHICS) main.o
 	C_OS += Linux
 	LIBS += -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl -lassimp
 endif

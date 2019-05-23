@@ -4,6 +4,5 @@ obj/
 *.cbp
 *.depend
 *.layout
-include/ecs*
-src/ecs*
-main*
+main
+main.exe

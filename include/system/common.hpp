@@ -2,6 +2,7 @@
 #define ECS_COMMON_H
 
 #include <cstdint>
+#include <type_traits>
 
 typedef int8_t int8;
 typedef uint8_t uint8;

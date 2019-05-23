@@ -3,6 +3,6 @@
 
 #include <vector>
 
-#define Array std::vector
+#define Vector std::vector
 
 #endif // DSTR_ARRAY_H
