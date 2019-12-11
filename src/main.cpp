@@ -16,7 +16,7 @@ int main()
 
     Shader lightingShader("lightingShader");
 
-    Model nanosuit("res/models/villager/villager.obj");
+    Model villager("res/models/villager/villager.obj");
 
     DirectionalLight dirLight(&lightingShader, glm::vec3(-0.2f, -1.0f, -0.3f),  // Direction
                                                glm::vec3( 0.2f,  0.2f,  0.2f),  // Ambient
@@ -95,7 +95,7 @@ int main()
         lightingShader.setVec3("spotLight.position", camera.getPosition());
         lightingShader.setVec3("spotLight.direction", camera.getFront());
 
-        nanosuit.draw(lightingShader);
+        villager.draw(lightingShader);
 
         // ------------------
 
